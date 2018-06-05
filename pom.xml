@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>job-backend-developer</name>
-    <description>Resolução do teste proposto da Intelipost.</description>
+    <description>Resolução do teste proposto da Intelipost</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -69,7 +69,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
