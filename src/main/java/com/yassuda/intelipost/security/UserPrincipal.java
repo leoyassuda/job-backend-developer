@@ -38,6 +38,11 @@ public class UserPrincipal implements UserDetails {
         this.authorities = authorities;
     }
 
+    /**
+     * Método para criação base de usuários.
+     * @param user o usuário a ser criado.
+     * @return o {@link UserPrincipal} com o usuário criado.
+     */
     public static UserPrincipal create(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
                 new SimpleGrantedAuthority(role.getName().name())
@@ -110,7 +115,6 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id);
     }
 }

@@ -3,6 +3,8 @@ package com.yassuda.intelipost.security;
 import com.yassuda.intelipost.exception.ResourceNotFoundException;
 import com.yassuda.intelipost.model.User;
 import com.yassuda.intelipost.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
     @Autowired
     UserRepository userRepository;

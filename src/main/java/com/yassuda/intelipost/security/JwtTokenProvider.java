@@ -1,19 +1,13 @@
 package com.yassuda.intelipost.security;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-import java.util.Date;
 
-import java.security.SignatureException;
+import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
@@ -26,6 +20,11 @@ public class JwtTokenProvider {
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
+    /**
+     * Gerador de Token a partir de uma autenticação.
+     * @param authentication uma autenticação válida.
+     * @return uma {@link String} com o Token gerado.
+     */
     public String generateToken(Authentication authentication) {
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
