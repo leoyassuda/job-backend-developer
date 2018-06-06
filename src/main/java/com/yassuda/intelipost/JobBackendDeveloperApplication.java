@@ -20,7 +20,6 @@ public class JobBackendDeveloperApplication {
      * @return H2 Server instance
      * @throws SQLException
      */
-    // First App
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server h2Server() throws SQLException {
         return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
