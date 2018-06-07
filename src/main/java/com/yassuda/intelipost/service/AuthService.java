@@ -42,6 +42,7 @@ public class AuthService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(authentication);
+        logger.info("User " + usernameOrEmail + " is authenticated");
         return CompletableFuture.completedFuture(jwt);
     }
 }
