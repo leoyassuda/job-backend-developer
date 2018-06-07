@@ -22,6 +22,7 @@ public class JwtTokenProvider {
 
     /**
      * Gerador de Token a partir de uma autenticação.
+     *
      * @param authentication uma autenticação válida.
      * @return uma {@link String} com o Token gerado.
      */

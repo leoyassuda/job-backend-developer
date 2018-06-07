@@ -40,6 +40,7 @@ public class UserPrincipal implements UserDetails {
 
     /**
      * Método para criação base de usuários.
+     *
      * @param user o usuário a ser criado.
      * @return o {@link UserPrincipal} com o usuário criado.
      */
