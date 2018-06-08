@@ -86,6 +86,16 @@ public class JobBackendDeveloperApplicationTests {
     }
 
     @Test
+    public void verifyNonexistentUserSignIn() throws Exception {
+
+        this.mvc.perform(post("/api/auth/signin")
+                .contentType(contentType)
+                .content("{\"usernameOrEmail\":\"nonexistent\",\"password\":\"pass#123\"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(containsString("{\"success\":false,\"message\":\"Bad credentials\"}")));
+    }
+
+    @Test
     public void verifyUserSignUp() throws Exception {
 
         this.mvc.perform(post("/api/auth/signup")
@@ -95,7 +105,20 @@ public class JobBackendDeveloperApplicationTests {
                         "\"email\":\"userjunit@fakemail.com\"," +
                         "\"password\":\"pass#123\"}"))
                 .andExpect(status().isCreated())
-                .andExpect(content().string(containsString("\"success\":\"true\",\"message\":\"User registered successfully\"")));
+                .andExpect(content().string(containsString("{\"success\":true,\"message\":\"User registered successfully\"}")));
+    }
+
+    @Test
+    public void verifyExistentUserSignUp() throws Exception {
+
+        this.mvc.perform(post("/api/auth/signup")
+                .contentType(contentType)
+                .content("{\"name\":\"admin\"," +
+                        "\"username\":\"admin\"," +
+                        "\"email\":\"admin@fakemail.com\"," +
+                        "\"password\":\"pass#123\"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(containsString("{\"success\":false,\"message\":\"Username is already taken!\"}")));
     }
 
 }
