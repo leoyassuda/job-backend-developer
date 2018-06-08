@@ -41,6 +41,7 @@ public class JobBackendDeveloperApplication {
 
     /**
      * Executor das threads do método assíncrono 'signin'
+     *
      * @return um {@link Executor} para uso das threads.
      */
     @Bean
