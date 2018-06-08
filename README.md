@@ -1,5 +1,7 @@
 # Intelipost: Teste prático para Backend Developer
 
+[![Build Status](http://circleci-badges-max.herokuapp.com/img/leoyassuda/job-backend-developer?token=eb51499611e865a0b6eae80986c57f7861e058d9)](https://circleci.com/gh/leoyassuda/job-backend-developer)
+
 Aqui está a resolução do teste para Backend Developer.
 
 ## Instruções
