@@ -1,14 +1,17 @@
 package com.yassuda.intelipost;
 
 import org.h2.tools.Server;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.concurrent.Executor;
 
 @SpringBootApplication
@@ -28,6 +31,9 @@ public class JobBackendDeveloperApplication {
     @Value("${thread.queue-capacity}")
     private int queueCapacity;
 
+    @Autowired
+    private Environment environment;
+
     /**
      * Instância de um Server de H2 para conexão remota.
      *
@@ -36,7 +42,16 @@ public class JobBackendDeveloperApplication {
      */
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server h2Server() throws SQLException {
-        return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
+        String profileActive = Arrays.stream(environment.getActiveProfiles())
+                .filter("test"::equals)
+                .findAny()
+                .orElse(null);
+
+        if (profileActive.equals("test")) {
+            return null;
+        } else {
+            return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
+        }
     }
 
     /**

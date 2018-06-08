@@ -1,6 +1,5 @@
 package com.yassuda.intelipost.controller;
 
-import com.yassuda.intelipost.exception.ApplicationException;
 import com.yassuda.intelipost.model.User;
 import com.yassuda.intelipost.payload.ApiResponse;
 import com.yassuda.intelipost.payload.JwtAuthenticationResponse;
