@@ -45,7 +45,7 @@ public class JobBackendDeveloperApplication {
         String profileActive = Arrays.stream(environment.getActiveProfiles())
                 .filter("test"::equals)
                 .findAny()
-                .orElse(null);
+                .orElse("");
 
         if (profileActive.equals("test")) {
             return null;
