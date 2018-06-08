@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
+
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -22,14 +24,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String usernameOrEmail)
-            throws UsernameNotFoundException {
-        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
-                );
-
-        return UserPrincipal.create(user);
+    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+        try{
+            User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail).get();
+            return UserPrincipal.create(user);
+        } catch (NoSuchElementException e){
+            logger.error("User not found with username or email : " + usernameOrEmail);
+            throw new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail);
+        }
     }
 
     @Transactional

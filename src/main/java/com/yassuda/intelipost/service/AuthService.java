@@ -30,10 +30,9 @@ public class AuthService {
      * @param usernameOrEmail o username ou e-mail do usuário.
      * @param password        a senha do usuário.
      * @return uma {@link String} com o token de autenticação.
-     * @throws InterruptedException
      */
     @Async
-    public CompletableFuture<String> authUser(String usernameOrEmail, String password) throws InterruptedException {
+    public CompletableFuture<String> authUser(String usernameOrEmail, String password) {
 
         logger.info("Looking up and authenticate a user: " + usernameOrEmail);
         Authentication authentication = authenticationManager.authenticate(
