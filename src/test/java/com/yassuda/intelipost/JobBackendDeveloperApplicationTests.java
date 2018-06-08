@@ -35,6 +35,10 @@ public class JobBackendDeveloperApplicationTests {
 
     private static final Logger logger = LogManager.getLogger(JobBackendDeveloperApplicationTests.class);
 
+    private final MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
+            MediaType.APPLICATION_JSON.getSubtype(),
+            Charset.forName("utf8"));
+
     @Rule
     public OutputCapture output = new OutputCapture();
 
@@ -72,9 +76,6 @@ public class JobBackendDeveloperApplicationTests {
 
     @Test
     public void verifyUserSignIn() throws Exception {
-        MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
-                MediaType.APPLICATION_JSON.getSubtype(),
-                Charset.forName("utf8"));
 
         this.mvc.perform(post("/api/auth/signin")
                 .contentType(contentType)
@@ -82,6 +83,19 @@ public class JobBackendDeveloperApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"tokenType\":\"Bearer\"")));
         this.output.expect(containsString("User admin is authenticated"));
+    }
+
+    @Test
+    public void verifyUserSignUp() throws Exception {
+
+        this.mvc.perform(post("/api/auth/signup")
+                .contentType(contentType)
+                .content("{\"name\":\"user-junit\"," +
+                        "\"username\":\"userjunit\"," +
+                        "\"email\":\"userjunit@fakemail.com\"," +
+                        "\"password\":\"pass#123\"}"))
+                .andExpect(status().isCreated())
+                .andExpect(content().string(containsString("\"success\":\"true\",\"message\":\"User registered successfully\"")));
     }
 
 }
