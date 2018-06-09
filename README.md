@@ -107,7 +107,7 @@ mvn spring-boot:run
 
 ## Autor
 
-* **Leo Yassuda** - *Initial work* - [Job-Backend-Developer](https://github.com/leoyassuda/job-backend-developer.git) - site [www.leoyas.com](www.leoyas.com)
+* **Leo Yassuda** - *Initial work* - [Job-Backend-Developer](https://github.com/leoyassuda/job-backend-developer) - site [www.leoyas.com](www.leoyas.com)
 
 
 ## Como foi desenvolvido
