@@ -63,14 +63,6 @@ mvn spring-boot:run
 >  - `email=[string]`
 >  - `password=[string]`
 > 
-> /api/auth/signup - Cria um novo usuário 
-> - **Method:** `POST`
-> - Parâmetros obrigatórios
->  - `name=[string]`
->  - `username=[string]`
->  - `email=[string]`
->  - `password=[string]`
-> 
 > /api/user/checkUsernameAvailability - Verifica se um 'username' pode ser utilizado
 > - **Method:** `GET`
 > - Parâmetros obrigatórios
@@ -114,9 +106,13 @@ mvn spring-boot:run
 
 A partir do fork como proposto, realizei algumas pesquisas para o obter mais ideias para tal resolução.
 
-Foi gasto menos de 20 horas.
+Foram gastas 20 horas no desenvolvimento.
 
 A estrutura foi separado em camadas para facilitar o entendimento, codificação e manutenção.
 
 Uma api foi desenvolvida para atender o problema proposto por método assíncrono e configurável pelo arquivo de propriedade.
+
+Este projeto está sendo executado no seguinte endereço: [intelipost-service](https://www.leoyas.com/intelipost-service/)
+
+Para isso, o build e instalação foi realizado por uma pipeline do jenkins em uma instância na AWS.
 
