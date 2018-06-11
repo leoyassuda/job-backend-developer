@@ -23,7 +23,6 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping("/user/me")
-    @PreAuthorize("hasRole('USER')")
     public UserProfileMinimum getCurrentUser(@CurrentUser UserPrincipal currentUser) {
         return new UserProfileMinimum(currentUser.getId(), currentUser.getUsername(), currentUser.getName());
     }
